@@ -1,4 +1,4 @@
-package com.webservice.rest.util.pdf;
+package com.webservice.rest.utils.pdf;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,8 +16,9 @@ public class InsertHeaderAndFooter {
 
 	public void addFooter(String src, String dest, String hash) throws FileNotFoundException, IOException {
 
-		PdfDocument pdfDoc =
-			    new PdfDocument(new PdfReader(src), new PdfWriter(dest));
+		PdfDocument pdfDoc = new PdfDocument(
+			new PdfReader(src), new PdfWriter(dest)
+		);
 
 		Rectangle pageSize;
 		PdfCanvas canvas;
@@ -27,7 +28,7 @@ public class InsertHeaderAndFooter {
 		    pageSize = page.getPageSize();
 		    canvas = new PdfCanvas(page);
 
-		    //Draw hash code
+		    //Draw footer with the hash code
 		    canvas.beginText().setFontAndSize(
 		            PdfFontFactory.createFont(FontConstants.HELVETICA), 7)
 		            .moveText(3, 10)
