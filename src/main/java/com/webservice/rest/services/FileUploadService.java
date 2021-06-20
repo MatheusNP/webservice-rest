@@ -19,9 +19,9 @@ public class FileUploadService {
 	// caminho onde os arquivos com rodapé serão gravados;
 	public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 
-	public FileUploadDTO upload(String cpf, MultipartFile pdf) throws IllegalArgumentException, IllegalAccessException {
+	public FileUploadDTO upload(String cpf, MultipartFile pdf, String remoteAddress) throws IllegalArgumentException, IllegalAccessException {
 
-		FileUploadDTO hash = new FileUploadDTO(new HashShaModel(cpf, pdf.getOriginalFilename()));
+		FileUploadDTO hash = new FileUploadDTO(new HashShaModel(cpf, remoteAddress));
 		String hashResult = hash.getHashResult();
 		
 		Path fileNameAndPathSrc = Paths.get(uploadDirectoryTmp, pdf.getOriginalFilename());

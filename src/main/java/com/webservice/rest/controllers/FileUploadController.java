@@ -1,5 +1,7 @@
 package com.webservice.rest.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +30,12 @@ public class FileUploadController {
 	@ResponseBody
 	public ResponseEntity<FileUploadDTO> upload(
 		@RequestParam("cpf") String cpf,
-		@RequestParam("pdf") MultipartFile pdf
+		@RequestParam("pdf") MultipartFile pdf,
+		HttpServletRequest request
 	) throws IllegalArgumentException, IllegalAccessException {
 
 		// cria objeto DTO com o resultado do upload do arquivo (chave hash gerada);
-		FileUploadDTO fileDto = service.upload(cpf, pdf);
+		FileUploadDTO fileDto = service.upload(cpf, pdf, request.getRemoteAddr());
 		
 		return ResponseEntity.ok(fileDto);
 	}

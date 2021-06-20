@@ -10,12 +10,12 @@ import java.util.Map;
 public class HashShaModel {
 
 	private String cpf;
-	private String fileName;
+	private String remoteAddress;
 	private Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
 	
-	public HashShaModel (String cpf, String fileName) {
+	public HashShaModel (String cpf, String remoteAddress) {
 		this.cpf = cpf;
-		this.fileName = fileName;
+		this.remoteAddress = remoteAddress;
 	}
 
 	public Timestamp getTimeStamp() {
@@ -26,16 +26,16 @@ public class HashShaModel {
 		return cpf;
 	}
 
-	public String getFileName() {
-		return fileName;
+	public String getRemoteAddress() {
+		return remoteAddress;
 	}
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setRemoteAddress(String remoteAddress) {
+		this.remoteAddress = remoteAddress;
 	}
 	
 	public String getHashResult() throws IllegalArgumentException, IllegalAccessException {
@@ -44,7 +44,7 @@ public class HashShaModel {
 	    // objeto hashmap que será usado para criar chave hash;
 	    Map<String, Object> objMap = new HashMap<String,Object>();
 
-	    // capturando os campos declarados da classe: cpf, fileName e timeStamp;
+	    // capturando os campos declarados da classe: cpf, remoteAddress e timeStamp;
 	    Field[] allFields = this.getClass().getDeclaredFields();
 	    // percorre cada campo, incluindo na hashmap;
 	    for (Field field : allFields) {
